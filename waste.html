@@ -1,0 +1,287 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="EcoAware waste management guide covering e-waste, recycling, composting and waste segregation.">
+<title>Waste Management | EcoAware</title>
+
+<style>
+:root {
+    --green: #176b45;
+    --dark: #123b2a;
+    --light: #f3f8f1;
+    --text: #26372c;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text);
+    background: #fbfcf8;
+    line-height: 1.7;
+}
+a { text-decoration: none; }
+header {
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 3px 15px #00000012;
+}
+nav {
+    max-width: 1200px;
+    margin: auto;
+    padding: 15px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+.logo { font-size: 25px; font-weight: 800; color: var(--green); }
+.nav-links { display: flex; flex-wrap: wrap; gap: 16px; }
+.nav-links a { color: #344b3d; font-size: 13px; font-weight: bold; }
+.nav-links a:hover, .nav-links .active { color: var(--green); }
+
+.hero {
+    min-height: 490px;
+    display: flex;
+    align-items: center;
+    padding: 65px 24px;
+    color: white;
+    background:
+      linear-gradient(90deg, rgba(8,35,23,.88), rgba(8,35,23,.25)),
+      url("https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=1800&q=85")
+      center/cover no-repeat;
+}
+.hero-content { max-width: 1150px; width: 100%; margin: auto; }
+.pill {
+    display: inline-block;
+    background: #ffffff24;
+    border: 1px solid #ffffff60;
+    border-radius: 30px;
+    padding: 6px 14px;
+    margin-bottom: 18px;
+    font-size: 13px;
+}
+.hero h1 {
+    font-size: clamp(38px, 5vw, 64px);
+    line-height: 1.12;
+    max-width: 720px;
+    margin-bottom: 20px;
+}
+.hero p { max-width: 640px; font-size: 17px; margin-bottom: 28px; color: #edf4ed; }
+.btn {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: 8px;
+    background: #d8edbd;
+    color: #163e29;
+    font-weight: bold;
+}
+.btn:hover { background: white; }
+
+.container { max-width: 1150px; margin: auto; padding: 65px 24px; }
+.heading { text-align: center; max-width: 730px; margin: 0 auto 35px; }
+.heading span {
+    color: var(--green);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.heading h2 {
+    color: var(--dark);
+    font-size: clamp(28px, 4vw, 39px);
+    line-height: 1.25;
+    margin: 8px 0 12px;
+}
+.heading p { color: #647267; }
+
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.card {
+    overflow: hidden;
+    border: 1px solid #e3eae0;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 8px 25px #183a2510;
+    transition: transform .2s, box-shadow .2s;
+}
+.card:hover { transform: translateY(-5px); box-shadow: 0 14px 30px #183a251c; }
+.card img {
+    width: 100%;
+    height: 225px;
+    display: block;
+    object-fit: cover;
+    background: #e7eee4;
+}
+.card-content { padding: 22px; }
+.tag {
+    display: inline-block;
+    background: #e9f4df;
+    color: #28633f;
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.card h3 { color: var(--dark); font-size: 21px; margin-bottom: 8px; }
+.card p { color: #637166; font-size: 14px; }
+
+.steps-section { background: var(--light); }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.step { background: white; padding: 24px; border-radius: 13px; border: 1px solid #e2eade; }
+.number {
+    display: grid;
+    place-items: center;
+    width: 43px;
+    height: 43px;
+    background: var(--green);
+    color: white;
+    font-weight: bold;
+    border-radius: 50%;
+    margin-bottom: 14px;
+}
+.step h3 { color: var(--dark); margin-bottom: 8px; }
+.step p { font-size: 14px; color: #637166; }
+
+.ewaste-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    border-radius: 18px;
+    background: #153d2a;
+    color: white;
+    margin-top: 45px;
+}
+.ewaste-panel img {
+    width: 100%;
+    height: 100%;
+    min-height: 350px;
+    object-fit: cover;
+    display: block;
+    background: #e7eee4;
+}
+.ewaste-content { padding: 35px; align-self: center; }
+.ewaste-content h2 { font-size: 30px; line-height: 1.25; margin-bottom: 15px; }
+.ewaste-content p { color: #e2ebe3; margin-bottom: 15px; }
+.ewaste-content ul { padding-left: 20px; color: #e2ebe3; }
+.ewaste-content li { margin-bottom: 8px; }
+
+.more-section { text-align: center; background: #eef5e9; }
+.page-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 25px; }
+.page-links a {
+    background: white;
+    color: var(--green);
+    border: 1px solid #dce8d7;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+}
+.page-links a:hover { background: var(--green); color: white; }
+
+footer { background: #102d20; color: #dce9de; text-align: center; padding: 28px 20px; font-size: 14px; }
+footer p + p { margin-top: 4px; }
+
+@media(max-width: 900px) {
+    nav { flex-direction: column; }
+    .nav-links { justify-content: center; }
+    .cards { grid-template-columns: repeat(2, 1fr); }
+    .steps { grid-template-columns: repeat(2, 1fr); }
+}
+@media(max-width: 600px) {
+    .cards, .steps, .ewaste-panel { grid-template-columns: 1fr; }
+    .hero { min-height: 420px; padding: 50px 20px; }
+    .container { padding: 45px 18px; }
+    .nav-links { gap: 10px; justify-content: center; }
+    .nav-links a { font-size: 12px; }
+    .ewaste-panel img { min-height: 240px; height: 260px; }
+    .ewaste-content { padding: 25px; }
+}
+</style>
+</head>
+
+<body>
+<header>
+<nav>
+    <a class="logo" href="index.html">🌿 EcoAware</a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="issues.html">Environmental Issues</a>
+        <a class="active" href="waste.html">Waste Management</a>
+        <a href="conservation.html">Conservation</a>
+        <a href="practices.html">Eco Practices</a>
+        <a href="resources.php">Resources</a>
+        <a href="tips.html">Tips</a>
+    </div>
+</nav>
+</header>
+
+<main>
+<section class="hero">
+    <div class="hero-content">
+        <span class="pill">♻️ Responsible waste management</span>
+        <h1>Waste Less. Protect More.</h1>
+        <p>
+            Learn how to reduce waste, recycle valuable materials,
+            dispose of electronics safely, and keep our communities clean.
+        </p>
+        <a class="btn" href="#waste-types">Explore the guide ↓</a>
+    </div>
+</section>
+
+<section class="container" id="waste-types">
+    <div class="heading">
+        <span>Know your waste</span>
+        <h2>Different Types of Waste</h2>
+        <p>Correct sorting helps recover useful materials and reduces environmental pollution.</p>
+    </div>
+
+    <div class="cards">
+        <article class="card">
+            <img
+                src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=900&q=85"
+                alt="Green plants and garden compost"
+                loading="lazy"
+                onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=900&q=85';">
+            <div class="card-content">
+                <span class="tag">Organic waste</span>
+                <h3>Wet Waste</h3>
+                <p>Fruit peels, vegetable scraps and suitable food leftovers can be composted instead of being sent to landfill.</p>
+            </div>
+        </article>
+
+        <article class="card">
+            <img
+                src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=900&q=85"
+                alt="Materials collected for recycling"
+                loading="lazy"
+                onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1528323273322-d81458248d40?auto=format&fit=crop&w=900&q=85';">
+            <div class="card-content">
+                <span class="tag">Reuse and recycle</span>
+                <h3>Dry Waste</h3>
+                <p>Separate accepted paper, cardboard, metal, glass and plastic for collection and recycling according to local rules.</p>
+            </div>
+        </article>
+
+        <article class="card">
+            <img
+                src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=85"
+                alt="Electronic circuit board and components"
+                loading="lazy"
+                onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=900&q=85';">
+            <div class="card-content">
+                <span class="tag">Electronic waste</span>
+                <h3>E-Waste</h3>
+                <p>Old computers, mobile phones, chargers, cables and electronic devices need safe collection and authorized recycling.</p>
+            </div>
+        </article>
+
+        <article class="card">
+            <img
+                src="https://images.unsplash.com/photo-1605600659873-d808a13e4d9a?auto=format&fit=crop&w=900&q=85"
+                alt="Discarded materials that need responsible disposal"
+                loading
