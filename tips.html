@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoAware | Environmental Tips</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f8f1;
+            color: #243b2a;
+        }
+
+        header {
+            background: #176b38;
+            color: white;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+        }
+
+        nav {
+            background: #10532b;
+            padding: 14px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 12px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 18px;
+        }
+
+        #status {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 22px;
+        }
+
+        .tip-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            border-left: 6px solid #2e9851;
+            box-shadow: 0 4px 12px #00000012;
+            transition: transform 0.2s;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tip-card h2 {
+            color: #176b38;
+            margin-top: 0;
+        }
+
+        .category {
+            display: inline-block;
+            background: #e0f3e5;
+            color: #176b38;
+            padding: 7px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: 40px;
+            background: #176b38;
+            color: white;
+            text-align: center;
+            padding: 18px;
+        }
+
+        @media (max-width: 500px) {
+            nav a {
+                display: inline-block;
+                margin: 7px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>🌿 EcoAware</h1>
+        <p>Small Actions Today, A Greener Tomorrow</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="issues.html">Environmental Issues</a>
+        <a href="waste.html">Waste Management</a>
+        <a href="conservation.html">Conservation</a>
+        <a href="practices.html">Eco-Friendly Practices</a>
+    </nav>
+
+    <main>
+        <h2>Environmental Tips</h2>
+        <p>Simple everyday habits can make a difference to our planet.</p>
+
+        <p id="status">Loading environmental tips...</p>
+        <section class="tips-grid" id="tips"></section>
+    </main>
+
+    <footer>
+        <p>© 2026 EcoAware | Protect Nature, Protect Our Future 🌍</p>
+    </footer>
+
+    <script>
+        async function loadTips() {
+            const status = document.getElementById("status");
+            const container = document.getElementById("tips");
+
+            try {
+                const response = await fetch("get_tips.php");
+
+                if (!response.ok) {
+                    throw new Error("HTTP error " + response.status);
+                }
+
+                const data = await response.json();
+
+                if (!data.success) {
+                    throw new Error("Unable to load tips.");
+                }
+
+                container.replaceChildren();
+
+                data.tips.forEach(tip => {
+                    const card = document.createElement("article");
+                    card.className = "tip-card";
+
+                    const title = document.createElement("h2");
+                    title.textContent = "🌱 " + tip.title;
+
+                    const description = document.createElement("p");
+                    description.textContent = tip.description;
+
+                    const category = document.createElement("span");
+                    category.className = "category";
+                    category.textContent = tip.category;
+
+                    card.append(title, description, category);
+                    container.appendChild(card);
+                });
+
+                status.textContent =
+                    "Showing " + data.count + " environmental tips.";
+
+            } catch (error) {
+                status.textContent =
+                    "Could not load tips. Please check your PHP API.";
+                console.error(error);
+            }
+        }
+
+        loadTips();
+    </script>
+</body>
+</html>
+
