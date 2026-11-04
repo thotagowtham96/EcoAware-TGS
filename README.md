@@ -71,6 +71,8 @@ http://localhost/EcoAware-TGS/
 ```
 
 Change the URL if your local project folder has a different name.
+ Copy `db.example.php` and rename the copy to `db.php`.
+ Configure your local database credentials in `db.php`.
 
 ## Database
 The project uses MySQL to store environmental resources, tips, and user account information.
