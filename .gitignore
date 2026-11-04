@@ -1,0 +1,14 @@
+# Private database configuration
+db.php
+
+# Temporary password reset files
+reset_admin_password.php
+reset_user_password.php
+
+# Local environment files
+.env
+
+# Editor and operating system files
+.vscode/
+.DS_Store
+Thumbs.db
